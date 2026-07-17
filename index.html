@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BisterES, Roblox scripter for hire</title>
+<meta name="description" content="Roblox scripter. Sword combat weapons enemy AI and tower defense built clean and steady. Tight client server code and no lag. Fair prices while I build my name.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   BisterES v2, a scripter looking for his first clients
+   Read: this is for GAME OWNERS with a budget, not for coders.
+   So: warm not cold, proof up top, low-risk messaging, one tap to hire.
+   Palette = warm charcoal + bone + one confident Roblox red + safe mint
+   Type = Fraunces (display, warm serif) / Space Grotesk (body) / JB Mono (accent)
+   ===================================================================== */
+:root{
+  --ink:#171310;        /* warm near-black bg */
+  --ink2:#1F1A16;       /* raised surface */
+  --ink3:#2A2320;       /* card */
+  --line:rgba(232,220,206,.12);
+  --line2:rgba(232,220,206,.22);
+  --bone:#F3ECE2;       /* primary text */
+  --bone-dim:#B7AC9F;
+  --mut:#9C9184;        /* muted text */
+  --dim:#6E6459;        /* faint */
+  --red:#FF5436;        /* Roblox-ish confident red, the ONE bold color */
+  --red-soft:rgba(255,84,54,.12);
+  --mint:#8FE3B0;       /* "done / safe / included" */
+  --mint-soft:rgba(143,227,176,.12);
+  --amber:#F5C56B;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Space Grotesk',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{
+  background:var(--ink);color:var(--bone);
+  font-family:var(--sans);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100%;
+}
+::selection{background:var(--red);color:#fff}
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:#3A322C;border:3px solid var(--ink);border-radius:8px}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+img,video{display:block;max-width:100%}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+.serif{font-family:var(--serif)}
+.mono{font-family:var(--mono)}
+.red{color:var(--red)}
+.mint{color:var(--mint)}
+
+/* eyebrow, small mono kicker used to label sections */
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--mut);display:inline-flex;align-items:center;gap:9px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--red)}
+
+.h2{
+  font-family:var(--serif);font-weight:500;font-size:clamp(2.1rem,5vw,3.4rem);
+  line-height:1.05;letter-spacing:-.02em;
+}
+.h2 em{font-style:italic;color:var(--mut)}
+
+/* ---------------- floating hire button (always reachable) ---------------- */
+.hire{
+  position:fixed;right:22px;bottom:22px;z-index:80;
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--red);color:#fff;font-family:var(--sans);font-weight:600;font-size:15px;
+  padding:14px 20px;border:0;border-radius:100px;cursor:pointer;
+  box-shadow:0 12px 34px rgba(255,84,54,.34);
+  transform:translateY(0);transition:transform .22s,box-shadow .22s,opacity .3s;
+}
+.hire:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(255,84,54,.44)}
+.hire svg{width:17px;height:17px}
+.hire.tuck{opacity:0;pointer-events:none;transform:translateY(20px)}
+
+/* ---------------- top bar ---------------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:70;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 28px;
+  background:rgba(23,19,16,0);transition:background .3s,border-color .3s,padding .3s;
+  border-bottom:1px solid transparent;
+}
+.nav.stuck{background:rgba(23,19,16,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom-color:var(--line);padding:12px 28px}
+.brandmark{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:-.01em}
+.brandmark .dot{width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 14px var(--red)}
+.navlinks{display:flex;align-items:center;gap:8px}
+.navlinks a{font-size:14px;color:var(--mut);padding:8px 12px;border-radius:6px;transition:color .2s,background .2s}
+.navlinks a:hover{color:var(--bone);background:rgba(232,220,206,.06)}
+.navlinks .nav-cta{color:var(--bone);border:1px solid var(--line2)}
+.navlinks .nav-cta:hover{border-color:var(--red);background:var(--red-soft);color:var(--bone)}
+
+/* ---------------- hero ---------------- */
+.hero{position:relative;padding:150px 0 80px;overflow:hidden}
+.hero::before{ /* soft warm glow, not a cold grid */
+  content:"";position:absolute;top:-10%;left:50%;transform:translateX(-50%);
+  width:900px;height:640px;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(255,84,54,.14),transparent 62%);
+  filter:blur(20px);
+}
+.hero .wrap{position:relative;z-index:2}
+.hero-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:26px}
+.avail{
+  display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12.5px;
+  letter-spacing:.04em;color:var(--mint);background:var(--mint-soft);
+  border:1px solid rgba(143,227,176,.3);padding:7px 15px;border-radius:100px;
+}
+.avail i{width:7px;height:7px;border-radius:50%;background:var(--mint);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero h1{
+  font-family:var(--serif);font-weight:500;font-size:clamp(2.7rem,7vw,5.2rem);
+  line-height:1.02;letter-spacing:-.03em;max-width:16ch;
+}
+.hero h1 .name{font-style:italic;color:var(--red)}
+.hero-lead{font-size:clamp(1.05rem,2.3vw,1.35rem);color:var(--mut);max-width:52ch;line-height:1.5}
+.hero-lead b{color:var(--bone);font-weight:500}
+.hero-ctas{display:flex;gap:13px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;
+  font-size:15px;padding:14px 24px;border-radius:100px;cursor:pointer;border:1px solid transparent;
+  transition:transform .2s,background .2s,border-color .2s,box-shadow .2s;
+}
+.btn svg{width:17px;height:17px}
+.btn-primary{background:var(--red);color:#fff;box-shadow:0 10px 30px rgba(255,84,54,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(255,84,54,.42)}
+.btn-ghost{background:transparent;color:var(--bone);border-color:var(--line2)}
+.btn-ghost:hover{border-color:var(--bone);transform:translateY(-2px)}
+
+/* the hero video, the proof, front and center */
+.reel{
+  margin-top:64px;position:relative;border-radius:16px;overflow:hidden;
+  border:1px solid var(--line2);background:var(--ink2);
+  box-shadow:0 40px 90px rgba(0,0,0,.5);
+}
+.reel-frame{position:relative;aspect-ratio:16/9;background:#0E0B09;overflow:hidden}
+.reel-frame video,.reel-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+.reel-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px}
+.reel-ph .disc{
+  width:70px;height:70px;border-radius:50%;background:var(--red);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 0 rgba(255,84,54,.5);animation:ring 2.4s infinite;
+}
+@keyframes ring{70%{box-shadow:0 0 0 22px rgba(255,84,54,0)}100%{box-shadow:0 0 0 0 rgba(255,84,54,0)}}
+.reel-ph .disc svg{width:26px;height:26px;color:#fff;margin-left:3px}
+.reel-ph p{font-family:var(--mono);font-size:13px;color:var(--mut);letter-spacing:.03em}
+.reel-cap{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:15px 20px;border-top:1px solid var(--line);font-size:14px;
+}
+.reel-cap .l{color:var(--bone);font-weight:500}
+.reel-cap .r{font-family:var(--mono);font-size:12.5px;color:var(--mint)}
+
+/* trust strip, the risk-killers, right under the fold */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink2)}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.tcell{padding:30px 24px;border-right:1px solid var(--line)}
+.tcell:last-child{border-right:0}
+.tcell .ic{width:26px;height:26px;color:var(--mint);margin-bottom:14px}
+.tcell h3{font-family:var(--sans);font-size:15px;font-weight:600;color:var(--bone);margin-bottom:5px}
+.tcell p{font-size:13.5px;color:var(--mut);line-height:1.45}
+
+/* ---------------- section frame ---------------- */
+.sec{padding:110px 0}
+.sec-head{max-width:640px;margin-bottom:56px}
+.sec-head .eyebrow{margin-bottom:20px}
+.sec-head p{margin-top:18px;color:var(--mut);font-size:1.05rem}
+
+/* ---------------- work, video cards ---------------- */
+.works{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.work{
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--ink2);
+  transition:border-color .25s,transform .25s;
+}
+.work:hover{border-color:var(--line2);transform:translateY(-4px)}
+.work-vid{position:relative;aspect-ratio:16/9;background:#0E0B09;overflow:hidden}
+.work-vid video,.work-vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+.work-vid .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:11px;color:var(--dim);font-family:var(--mono);font-size:12.5px}
+.work-vid .ph svg{width:34px;height:34px;color:#3A322C}
+.work-tag{
+  position:absolute;top:12px;left:12px;z-index:2;font-family:var(--mono);font-size:11px;
+  letter-spacing:.06em;color:var(--bone);background:rgba(14,11,9,.72);
+  backdrop-filter:blur(4px);padding:5px 11px;border-radius:100px;border:1px solid var(--line2);
+}
+.work-body{padding:22px 24px 24px}
+.work-body h3{font-family:var(--serif);font-size:1.5rem;font-weight:500;letter-spacing:-.01em;margin-bottom:8px}
+.work-body .what{color:var(--mut);font-size:14.5px;line-height:1.5;margin-bottom:16px}
+.work-body .gain{
+  display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--mint);
+  font-family:var(--mono);letter-spacing:.02em;
+}
+.work-body .gain svg{width:14px;height:14px}
+
+/* ---------------- how it works, a real 3-step process ---------------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+.step{position:relative;padding:30px 26px;border:1px solid var(--line);border-radius:14px;background:var(--ink2)}
+.step::before{
+  counter-increment:s;content:"0" counter(s);
+  font-family:var(--serif);font-style:italic;font-size:2.4rem;color:var(--red);
+  display:block;margin-bottom:16px;line-height:1;
+}
+.step h3{font-size:16px;font-weight:600;margin-bottom:8px}
+.step p{color:var(--mut);font-size:14px;line-height:1.5}
+
+/* ---------------- pricing ---------------- */
+.firstbanner{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  border:1px solid rgba(255,84,54,.34);background:var(--red-soft);
+  border-radius:14px;padding:20px 24px;margin-bottom:36px;
+}
+.firstbanner .badge{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:#fff;background:var(--red);padding:6px 12px;border-radius:100px;white-space:nowrap;
+}
+.firstbanner p{font-size:15px;color:var(--bone);flex:1;min-width:240px}
+.firstbanner p b{color:var(--red)}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tier{
+  border:1px solid var(--line);border-radius:14px;padding:30px 26px;background:var(--ink2);
+  display:flex;flex-direction:column;transition:border-color .25s,transform .25s;
+}
+.tier:hover{border-color:var(--line2);transform:translateY(-4px)}
+.tier.feat{border-color:rgba(255,84,54,.4);background:linear-gradient(180deg,var(--red-soft),var(--ink2) 60%)}
+.tier .tname{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:14px}
+.tier .feat-pill{float:right;font-size:10px;color:var(--red);border:1px solid rgba(255,84,54,.4);border-radius:100px;padding:3px 9px;letter-spacing:.08em}
+.tier .price{font-family:var(--serif);font-size:2.5rem;font-weight:500;line-height:1;letter-spacing:-.02em}
+.tier .price small{font-size:1rem;color:var(--mut);font-family:var(--sans);font-weight:400}
+.tier .robux{font-family:var(--mono);font-size:12.5px;color:var(--amber);margin-top:8px}
+.tier .tdesc{color:var(--mut);font-size:14px;line-height:1.5;margin:18px 0 20px;flex:1}
+.tier ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.tier li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--bone-dim)}
+.tier li svg{width:15px;height:15px;color:var(--mint);flex:none;margin-top:3px}
+.tier .tbtn{
+  margin-top:auto;text-align:center;font-family:var(--sans);font-weight:600;font-size:14.5px;
+  padding:13px;border-radius:100px;border:1px solid var(--line2);color:var(--bone);
+  transition:background .2s,border-color .2s;cursor:pointer;
+}
+.tier .tbtn:hover{background:var(--red-soft);border-color:var(--red)}
+.tier.feat .tbtn{background:var(--red);border-color:var(--red);color:#fff}
+.tier.feat .tbtn:hover{background:#ff6a50}
+.price-note{margin-top:30px;text-align:center;font-size:13.5px;color:var(--dim)}
+.price-note .mono{color:var(--mut)}
+
+/* ---------------- about ---------------- */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-photo{
+  aspect-ratio:4/5;border-radius:16px;border:1px solid var(--line2);overflow:hidden;position:relative;
+  background:linear-gradient(150deg,var(--ink3),var(--ink2));
+}
+.about-photo .initials{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-style:italic;font-size:clamp(4rem,12vw,7rem);color:var(--red);opacity:.9;
+}
+.about-photo .corner{position:absolute;bottom:16px;left:16px;font-family:var(--mono);font-size:11px;color:var(--mut);letter-spacing:.08em}
+.about h2{font-family:var(--serif);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:500;line-height:1.1;letter-spacing:-.02em;margin-bottom:22px}
+.about p{color:var(--mut);font-size:16px;line-height:1.65;margin-bottom:16px}
+.about p .hl{color:var(--bone)}
+.about .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.about .fact{font-family:var(--mono);font-size:12.5px;color:var(--bone-dim);border:1px solid var(--line);border-radius:100px;padding:8px 15px}
+.about .fact b{color:var(--mint);font-weight:400}
+
+/* ---------------- final CTA ---------------- */
+.close{position:relative;padding:120px 0;text-align:center;overflow:hidden}
+.close::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(255,84,54,.12),transparent 65%);
+}
+.close .wrap{position:relative;z-index:2}
+.close h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.3rem,6vw,4rem);line-height:1.04;letter-spacing:-.02em;margin-bottom:22px;max-width:18ch;margin-left:auto;margin-right:auto}
+.close h2 em{font-style:italic;color:var(--red)}
+.close p{color:var(--mut);font-size:1.1rem;max-width:46ch;margin:0 auto 40px}
+.close-ctas{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+.close-note{margin-top:30px;font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+
+/* toast */
+.toast{
+  position:fixed;left:22px;bottom:22px;z-index:90;
+  display:flex;align-items:center;gap:10px;
+  background:var(--ink3);border:1px solid var(--line2);border-left:3px solid var(--mint);
+  padding:13px 18px;border-radius:10px;font-size:14px;color:var(--bone);
+  transform:translateY(16px);opacity:0;pointer-events:none;transition:transform .3s,opacity .3s;
+  max-width:calc(100vw - 44px);
+}
+.toast.show{transform:none;opacity:1}
+.toast svg{width:17px;height:17px;color:var(--mint);flex:none}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:34px 28px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+footer .fbrand{font-family:var(--serif);font-size:17px;font-weight:600}
+footer .fmeta{font-size:13px;color:var(--dim)}
+
+/* reveals */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.6,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------------- responsive ---------------- */
+@media(max-width:860px){
+  .trust .wrap{grid-template-columns:1fr 1fr}
+  .tcell:nth-child(2n){border-right:0}
+  .tcell:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .works{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .tiers{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr;gap:36px}
+  .about-photo{max-width:340px}
+  .navlinks a:not(.nav-cta){display:none}
+}
+@media(max-width:540px){
+  .wrap{padding:0 20px}
+  .nav{padding:14px 20px}
+  .hero{padding:120px 0 60px}
+  .sec{padding:80px 0}
+  .trust .wrap{grid-template-columns:1fr}
+  .tcell{border-right:0;border-bottom:1px solid var(--line)}
+  .tcell:last-child{border-bottom:0}
+  .hire{right:16px;bottom:16px;padding:13px 18px}
+  .reel{margin-top:44px}
+  .firstbanner{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- icon defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 7h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/><path d="M3 7V6a2 2 0 0 1 2-2h11"/><circle cx="16" cy="13" r="1.4" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-loop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5h16v11H9l-4 3v-3H4V5Z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+</svg>
+
+<!-- floating hire -->
+<button class="hire" id="hireFab" type="button">
+  <svg><use href="#i-chat"/></svg> Hire me
+</button>
+
+<!-- nav -->
+<header class="nav" id="nav">
+  <a class="brandmark" href="#top"><span class="dot"></span>BisterES</a>
+  <nav class="navlinks">
+    <a href="#work">Work</a>
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a class="nav-cta" href="#contact">Hire me</a>
+  </nav>
+</header>
+
+<!-- hero -->
+<section id="top" class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <span class="avail"><i></i>Taking on new projects</span>
+      <h1>I program whatever your <span class="name">Roblox</span> game needs to run</h1>
+      <p class="hero-lead">Weapons movement whole game loops and combat that hits as hard as the top battlegrounds and I know the client server line cold so it runs smooth and does not break when players pile in so watch a clip before you trust me on that</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" id="heroHire" type="button"><svg><use href="#i-chat"/></svg>Message me on Discord</button>
+        <a class="btn btn-ghost" href="#work"><svg><use href="#i-play"/></svg>See it in action</a>
+      </div>
+    </div>
+
+    <!-- the proof, biggest video up top -->
+    <div class="reel rv">
+      <div class="reel-frame">
+        <!-- swap this .reel-ph for your best clip:
+             <video src="reel.mp4" autoplay muted loop playsinline></video> -->
+        <div class="reel-ph">
+          <span class="disc"><svg><use href="#i-play"/></svg></span>
+          <p>your best system, running live</p>
+        </div>
+      </div>
+      <div class="reel-cap">
+        <span class="l">Sword combat running live on the server</span>
+        <span class="r">// hits hard and holds up</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- trust strip, kill the risk of hiring an unknown -->
+<section class="trust">
+  <div class="wrap">
+    <div class="tcell">
+      <svg class="ic"><use href="#i-wallet"/></svg>
+      <h3>You pay when it works</h3>
+      <p>No money up front so you see it running in your game first then we settle.</p>
+    </div>
+    <div class="tcell">
+      <svg class="ic"><use href="#i-loop"/></svg>
+      <h3>Revisions included</h3>
+      <p>We keep tweaking until it feels right and small changes come with the deal.</p>
+    </div>
+    <div class="tcell">
+      <svg class="ic"><use href="#i-shield"/></svg>
+      <h3>Built to not break</h3>
+      <p>Tight client server code so it holds up when players pile in and cheaters get nowhere</p>
+    </div>
+    <div class="tcell">
+      <svg class="ic"><use href="#i-clock"/></svg>
+      <h3>Quick to reply</h3>
+      <p>Message me and you hear back same day because I like keeping things moving</p>
+    </div>
+  </div>
+</section>
+
+<!-- work -->
+<section id="work" class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Watch it run</span>
+      <h2 class="h2">Do not take my word <em>watch the clips</em></h2>
+      <p>Anyone can call themselves good so here is what I actually programmed running and what it changes for the people playing your game.</p>
+    </div>
+
+    <div class="works">
+      <article class="work rv">
+        <div class="work-vid">
+          <span class="work-tag">// sword combat</span>
+          <div class="ph"><svg><use href="#i-play"/></svg> clip goes here</div>
+        </div>
+        <div class="work-body">
+          <h3>Battleground level sword combat</h3>
+          <p class="what">M1 through M4 chains a downslam an uppercut plus ragdoll and knockback that all hit the frame you click and feel as heavy as the top battleground games and this is my strongest work</p>
+          <span class="gain"><svg><use href="#i-bolt"/></svg>this is what makes people share your game</span>
+        </div>
+      </article>
+
+      <article class="work rv">
+        <div class="work-vid">
+          <span class="work-tag">// tower defense</span>
+          <div class="ph"><svg><use href="#i-play"/></svg> clip goes here</div>
+        </div>
+        <div class="work-body">
+          <h3>A full in match tower defense</h3>
+          <p class="what">Towers targeting upgrades enemy pathing and the whole match loop programmed from zero where everything talks to each other and none of it falls apart while people are playing</p>
+          <span class="gain"><svg><use href="#i-bolt"/></svg>a complete game not a rough demo</span>
+        </div>
+      </article>
+
+      <article class="work rv">
+        <div class="work-vid">
+          <span class="work-tag">// weapons and tools</span>
+          <div class="ph"><svg><use href="#i-play"/></svg> clip goes here</div>
+        </div>
+        <div class="work-body">
+          <h3>Weapons and tools that feel right</h3>
+          <p class="what">Guns melee grapples and gadgets where the swap is instant the cooldowns are honest and the whole thing runs off one clean module so adding the next weapon takes minutes not a rewrite</p>
+          <span class="gain"><svg><use href="#i-bolt"/></svg>easy to expand as your game grows</span>
+        </div>
+      </article>
+
+      <article class="work rv">
+        <div class="work-vid">
+          <span class="work-tag">// enemy ai</span>
+          <div class="ph"><svg><use href="#i-play"/></svg> clip goes here</div>
+        </div>
+        <div class="work-body">
+          <h3>Enemies that actually think</h3>
+          <p class="what">NPCs that chase you around obstacles instead of getting stuck decide when to attack back off or wait and fight as a group without all piling onto the same spot so it feels like a real opponent not a punching bag</p>
+          <span class="gain"><svg><use href="#i-bolt"/></svg>combat that stays fun solo or in a squad</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- how it works -->
+<section id="how" class="sec" style="background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Simple process</span>
+      <h2 class="h2">From idea to working, <em>three steps</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step rv">
+        <h3>Tell me what you need</h3>
+        <p>Hit me up on Discord with the idea and we lock down exactly what gets programmed and the price before I touch anything</p>
+      </div>
+      <div class="step rv">
+        <h3>I program it and send clips</h3>
+        <p>You get updates as it comes together not radio silence for two weeks so you watch it take shape</p>
+      </div>
+      <div class="step rv">
+        <h3>It holds up you pay</h3>
+        <p>Once it runs right in your game and you are happy we settle up with Robux or PayPal whatever is easy</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- pricing -->
+<section id="pricing" class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Fair pricing</span>
+      <h2 class="h2">Prices while I <em>build my name</em></h2>
+      <p>I am just starting out so my prices are low right now not because the work is cheap but because I would rather build a name than squeeze early clients and what I quote is what you pay</p>
+    </div>
+
+    <div class="firstbanner rv">
+      <span class="badge">First clients</span>
+      <p>Booking one of my <b>first projects</b> gets my best price and extra attention because I want early work I am proud to show and you get the deal for jumping in early</p>
+    </div>
+
+    <div class="tiers">
+      <div class="tier rv">
+        <div class="tname">Mechanic</div>
+        <div class="price">$10<small> to $15</small></div>
+        <div class="robux">2.5k to 4k Robux</div>
+        <p class="tdesc">One thing done well like a shop a dash a door or a leaderboard</p>
+        <ul>
+          <li><svg><use href="#i-check"/></svg>Clean and polished</li>
+          <li><svg><use href="#i-check"/></svg>Runs server side</li>
+          <li><svg><use href="#i-check"/></svg>Small revisions</li>
+        </ul>
+        <div class="tbtn" data-tier="Mechanic">Ask about this</div>
+      </div>
+
+      <div class="tier feat rv">
+        <span class="feat-pill">most picked</span>
+        <div class="tname">System</div>
+        <div class="price">$25<small> to $40</small></div>
+        <div class="robux">6k to 10k Robux</div>
+        <p class="tdesc">A full system with data behind it like sword combat a weapon system an inventory or a round loop</p>
+        <ul>
+          <li><svg><use href="#i-check"/></svg>Multiple scripts one clean system</li>
+          <li><svg><use href="#i-check"/></svg>Saves and networking included</li>
+          <li><svg><use href="#i-check"/></svg>Exploit safe by default</li>
+          <li><svg><use href="#i-check"/></svg>Revisions until it is right</li>
+        </ul>
+        <div class="tbtn" data-tier="System">Ask about this</div>
+      </div>
+
+      <div class="tier rv">
+        <div class="tname">Framework</div>
+        <div class="price">$70<small> to $200</small></div>
+        <div class="robux">18k to 50k Robux</div>
+        <p class="tdesc">The whole game programmed from zero like a tower defense with everything wired to grow</p>
+        <ul>
+          <li><svg><use href="#i-check"/></svg>Full game backend</li>
+          <li><svg><use href="#i-check"/></svg>Programmed to scale</li>
+          <li><svg><use href="#i-check"/></svg>Commented so your team can build on it</li>
+        </ul>
+        <div class="tbtn" data-tier="Framework">Ask about this</div>
+      </div>
+    </div>
+
+    <p class="price-note"><span class="mono">Extras like mobile support admin panels or extra effects are priced per project and you pay when it is done with Robux or PayPal</span></p>
+  </div>
+</section>
+
+<!-- about -->
+<section id="about" class="sec" style="background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="about">
+      <div class="about-photo rv">
+        <div class="initials">B</div>
+        <span class="corner">// BisterES Roblox scripter</span>
+      </div>
+      <div class="rv">
+        <h2>The stuff you only know from actually writing code</h2>
+        <p>Anyone can list features but here is what I actually do which is keep the client and server in sync so nothing desyncs or gets exploited hold a steady framerate even when a lot is happening on screen and write my code in clean modules so a system can grow without turning into a mess.</p>
+        <p>Combat is the thing I am known for and I love making a swing feel heavy with ragdoll and knockback but it is one part of what I do and most of my work is the systems and problem solving that keep a whole game running.</p>
+        <p>I picked all this up messing around in Studio not from some course and I am new to doing it for hire so I will not pretend otherwise but you get someone who actually understands the code cares more than the price shows and replies fast.</p>
+        <div class="facts">
+          <span class="fact">clean <b>modules</b></span>
+          <span class="fact">tight <b>networking</b></span>
+          <span class="fact">kills <b>lag</b></span>
+          <span class="fact">habla <b>español</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- final CTA -->
+<section id="contact" class="close">
+  <div class="wrap">
+    <span class="eyebrow" style="justify-content:center;margin-bottom:22px">Lets build it</span>
+    <h2>Tell me what your game <em>actually needs</em></h2>
+    <p>Message me and tell me what you want programmed or what is giving you trouble and I will tell you straight how I would do it and what it costs so catch me early and it is cheaper</p>
+    <div class="close-ctas">
+      <button class="btn btn-primary" id="closeHire" type="button"><svg><use href="#i-chat"/></svg>Message me on Discord</button>
+      <a class="btn btn-ghost" href="https://www.roblox.com/es/users/3031322589/profile" target="_blank" rel="noopener">See my Roblox</a>
+    </div>
+    <p class="close-note">discord: bisteres  (tap the button to copy)</p>
+  </div>
+</section>
+
+<footer>
+  <span class="fbrand">BisterES</span>
+  <span class="fmeta">Roblox scripter, available for hire, 2026</span>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg><use href="#i-check"/></svg><span id="toastMsg"></span>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // nav background on scroll
+  var nav = document.getElementById('nav');
+  var fab = document.getElementById('hireFab');
+  var hero = document.getElementById('top');
+  function onScroll(){
+    var y = window.scrollY;
+    nav.classList.toggle('stuck', y > 40);
+    // tuck the FAB while the hero (with its own CTA) is in view
+    fab.classList.toggle('tuck', y < window.innerHeight * 0.6);
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // reveals
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.14});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  // discord copy
+  var HANDLE = 'bisteres';
+  var toast = document.getElementById('toast');
+  var toastMsg = document.getElementById('toastMsg');
+  var tTimer;
+  function ping(msg){
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(tTimer);
+    tTimer = setTimeout(function(){ toast.classList.remove('show'); }, 2800);
+  }
+  function copyDiscord(extra){
+    var msg = 'Discord copied: ' + HANDLE + (extra ? ' (' + extra + ')' : '');
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(HANDLE).then(function(){ ping(msg); }, function(){ ping('My Discord is ' + HANDLE); });
+    } else { ping('My Discord is ' + HANDLE); }
+  }
+  ['hireFab','heroHire','closeHire'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('click', function(){ copyDiscord(); });
+  });
+  document.querySelectorAll('.tbtn').forEach(function(b){
+    b.addEventListener('click', function(){ copyDiscord('ask about the ' + b.dataset.tier + ' tier'); });
+  });
+
+  console.log('%cBisterES, Roblox scripter for hire. discord: bisteres','color:#FF5436;font-family:monospace;font-size:13px');
+})();
+</script>
+</body>
+</html>
