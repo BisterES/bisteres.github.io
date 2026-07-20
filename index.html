@@ -179,13 +179,15 @@ img,video{display:block;max-width:100%}
 /* clean video thumbnail with our own play button, no youtube chrome */
 .vidbox{cursor:pointer}
 .vidbox:focus-visible{outline:2px solid var(--red);outline-offset:3px}
-/* looping muted preview, scaled to crop out the youtube logo, non interactive */
-.preview{position:absolute!important;top:50%;left:50%;width:118%;height:118%;transform:translate(-50%,-50%);border:0;object-fit:cover;pointer-events:none;z-index:0}
-.vidbox::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(14,11,9,.12),transparent 45%,rgba(14,11,9,.3));
+/* API-managed looping preview, scaled to crop youtube chrome, non interactive */
+.preview-holder{position:absolute;top:50%;left:50%;width:150%;height:150%;transform:translate(-50%,-50%);z-index:0;pointer-events:none}
+.preview-holder iframe{width:100%;height:100%;border:0}
+/* mask sits over the scaled video to hide any youtube title/avatar that peeks in */
+.prev-mask{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(14,11,9,.12),transparent 45%,rgba(14,11,9,.32));
   transition:background .25s}
-.vidbox:hover::after{background:linear-gradient(to bottom,rgba(14,11,9,.05),transparent 50%,rgba(14,11,9,.45))}
-/* the transparent click layer sits above the preview so a click opens our player */
+.vidbox:hover .prev-mask{background:linear-gradient(to bottom,rgba(14,11,9,.05),transparent 50%,rgba(14,11,9,.5))}
+/* the transparent click layer opens our player on click */
 .vidbox .vcap{position:absolute;inset:0;z-index:2;background:transparent}
 /* "click to watch fullscreen" hint, appears on hover */
 .vidbox .expand{
@@ -435,9 +437,10 @@ footer .fmeta{font-size:13px;color:var(--dim)}
     <!-- the proof, biggest video up top -->
     <div class="reel rv">
       <div class="reel-frame vidbox" data-vid="FqebGZjJmP0" role="button" tabindex="0" aria-label="Watch sword combat fullscreen">
-        <iframe class="preview" src="https://www.youtube-nocookie.com/embed/FqebGZjJmP0?autoplay=1&mute=1&loop=1&playlist=FqebGZjJmP0&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0" title="Sword combat" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" loading="lazy" tabindex="-1"></iframe>
+        <div class="preview-holder" id="prev-hero" data-vid="FqebGZjJmP0"></div>
+        <span class="prev-mask"></span>
         <span class="vcap"></span>
-        <span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click para ver en pantalla completa</span>
+        <span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click to watch fullscreen</span>
       </div>
       <div class="reel-cap">
         <span class="l">Sword combat running live on the server</span>
@@ -485,9 +488,10 @@ footer .fmeta{font-size:13px;color:var(--dim)}
       <article class="work rv">
         <div class="work-vid vidbox" data-vid="FqebGZjJmP0" role="button" tabindex="0" aria-label="Watch sword combat fullscreen">
           <span class="work-tag">// sword combat</span>
-          <iframe class="preview" src="https://www.youtube-nocookie.com/embed/FqebGZjJmP0?autoplay=1&mute=1&loop=1&playlist=FqebGZjJmP0&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0" title="Sword combat" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" loading="lazy" tabindex="-1"></iframe>
+          <div class="preview-holder" id="prev-sword" data-vid="FqebGZjJmP0"></div>
+          <span class="prev-mask"></span>
           <span class="vcap"></span>
-          <span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click para ver en pantalla completa</span>
+          <span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click to watch fullscreen</span>
         </div>
         <div class="work-body">
           <h3>Battleground level sword combat</h3>
@@ -499,9 +503,10 @@ footer .fmeta{font-size:13px;color:var(--dim)}
       <article class="work rv">
         <div class="work-vid vidbox" data-vid="WlakTCkrb14" role="button" tabindex="0" aria-label="Watch tower defense fullscreen">
           <span class="work-tag">// tower defense</span>
-          <iframe class="preview" src="https://www.youtube-nocookie.com/embed/WlakTCkrb14?autoplay=1&mute=1&loop=1&playlist=WlakTCkrb14&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0" title="Tower defense" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" loading="lazy" tabindex="-1"></iframe>
+          <div class="preview-holder" id="prev-tower" data-vid="WlakTCkrb14"></div>
+          <span class="prev-mask"></span>
           <span class="vcap"></span>
-          <span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click para ver en pantalla completa</span>
+          <span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click to watch fullscreen</span>
         </div>
         <div class="work-body">
           <h3>A full in match tower defense</h3>
@@ -725,8 +730,44 @@ footer .fmeta{font-size:13px;color:var(--dim)}
   var pbFill = document.getElementById('pbFill');
   var pbKnob = document.getElementById('pbKnob');
   var player = null, tick = null, lastFocused = null, usedFallback = false, currentId = null;
+  var previewPlayers = [];
 
   function apiIsReady(){ return typeof YT !== 'undefined' && YT && typeof YT.Player === 'function'; }
+
+  // create muted looping preview players inside each .preview-holder using the API
+  function initPreviews(){
+    document.querySelectorAll('.preview-holder').forEach(function(holder){
+      var id = holder.dataset.vid;
+      var p = new YT.Player(holder.id, {
+        width: '100%', height: '100%', videoId: id,
+        host: 'https://www.youtube-nocookie.com',
+        playerVars: { autoplay:1, mute:1, controls:0, rel:0, modestbranding:1, playsinline:1, disablekb:1, iv_load_policy:3, fs:0, loop:1, playlist:id },
+        events: {
+          onReady: function(e){ e.target.mute(); e.target.playVideo(); },
+          onStateChange: function(e){ if(e.data === YT.PlayerState.ENDED){ e.target.seekTo(0); e.target.playVideo(); } }
+        }
+      });
+      previewPlayers.push(p);
+    });
+  }
+
+  // poll for the API then build previews, fall back to a thumbnail image if blocked
+  var prevWaited = 0;
+  (function waitPreviews(){
+    if(apiIsReady()){ initPreviews(); return; }
+    prevWaited += 150;
+    if(prevWaited >= 6000){
+      document.querySelectorAll('.preview-holder').forEach(function(holder){
+        var img = document.createElement('img');
+        img.src = 'https://i.ytimg.com/vi/' + holder.dataset.vid + '/hqdefault.jpg';
+        img.alt = 'gameplay preview';
+        img.style.cssText = 'width:100%;height:100%;object-fit:cover';
+        holder.appendChild(img);
+      });
+      return;
+    }
+    setTimeout(waitPreviews, 150);
+  })();
 
   function fmt(t){ t=Math.max(0,Math.floor(t||0)); var m=Math.floor(t/60), s=t%60; return m+':'+(s<10?'0':'')+s; }
 
