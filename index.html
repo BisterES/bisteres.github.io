@@ -179,16 +179,21 @@ img,video{display:block;max-width:100%}
 /* clean video thumbnail with our own play button, no youtube chrome */
 .vidbox{cursor:pointer}
 .vidbox:focus-visible{outline:2px solid var(--red);outline-offset:3px}
-/* API-managed looping preview, scaled to crop youtube chrome, non interactive */
-.preview-holder{position:absolute;top:50%;left:50%;width:135%;height:135%;transform:translate(-50%,-50%);z-index:0;pointer-events:none}
-.preview-holder iframe{width:100%;height:100%;border:0}
-/* mask sits over the scaled video to hide any youtube title/avatar that peeks in */
-.prev-mask{position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(14,11,9,.12),transparent 45%,rgba(14,11,9,.32));
+/* clean thumbnail image, no youtube chrome, no errors */
+.thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.vidbox::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(14,11,9,.12),transparent 42%,rgba(14,11,9,.5));
   transition:background .25s}
-.vidbox:hover .prev-mask{background:linear-gradient(to bottom,rgba(14,11,9,.05),transparent 50%,rgba(14,11,9,.5))}
-/* the transparent click layer opens our player on click */
-.vidbox .vcap{position:absolute;inset:0;z-index:2;background:transparent}
+.vidbox:hover::after{background:linear-gradient(to bottom,rgba(14,11,9,.2),rgba(14,11,9,.15) 42%,rgba(14,11,9,.6))}
+/* our own play button */
+.playbtn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
+  width:64px;height:64px;border-radius:50%;
+  background:rgba(255,84,54,.92);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 30px rgba(255,84,54,.4);transition:transform .25s,background .25s;pointer-events:none;
+}
+.playbtn svg{width:25px;height:25px;color:#fff;margin-left:4px}
+.vidbox:hover .playbtn,.vidbox:focus-visible .playbtn{transform:translate(-50%,-50%) scale(1.1);background:var(--red)}
 /* "click to watch fullscreen" hint, appears on hover */
 .vidbox .expand{
   position:absolute;bottom:14px;left:50%;transform:translate(-50%,6px);z-index:3;
@@ -262,6 +267,8 @@ img,video{display:block;max-width:100%}
 @media(max-width:560px){
   .lightbox{padding:16px}
   .lightbox-close{top:-40px;right:0;width:32px;height:32px}
+  .playbtn{width:52px;height:52px}
+  .playbtn svg{width:21px;height:21px}
 }
 .work-tag{
   position:absolute;top:12px;left:12px;z-index:5;font-family:var(--mono);font-size:11px;
@@ -436,10 +443,9 @@ footer .fmeta{font-size:13px;color:var(--dim)}
 
     <!-- the proof, biggest video up top -->
     <div class="reel rv">
-      <div class="reel-frame vidbox" data-vid="FqebGZjJmP0" role="button" tabindex="0" aria-label="Watch sword combat fullscreen">
-        <div class="preview-holder" id="prev-hero" data-vid="FqebGZjJmP0"></div>
-        <span class="prev-mask"></span>
-        <span class="vcap"></span>
+      <div class="reel-frame vidbox" data-vid="FqebGZjJmP0" role="button" tabindex="0" aria-label="Watch sword combat">
+        <img class="thumb" src="https://i.ytimg.com/vi/FqebGZjJmP0/maxresdefault.jpg" alt="Sword combat gameplay" loading="lazy">
+        <span class="playbtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click to watch fullscreen</span>
       </div>
       <div class="reel-cap">
@@ -486,11 +492,10 @@ footer .fmeta{font-size:13px;color:var(--dim)}
 
     <div class="works">
       <article class="work rv">
-        <div class="work-vid vidbox" data-vid="FqebGZjJmP0" role="button" tabindex="0" aria-label="Watch sword combat fullscreen">
+        <div class="work-vid vidbox" data-vid="FqebGZjJmP0" role="button" tabindex="0" aria-label="Watch sword combat">
           <span class="work-tag">// sword combat</span>
-          <div class="preview-holder" id="prev-sword" data-vid="FqebGZjJmP0"></div>
-          <span class="prev-mask"></span>
-          <span class="vcap"></span>
+          <img class="thumb" src="https://i.ytimg.com/vi/FqebGZjJmP0/maxresdefault.jpg" alt="Sword combat gameplay" loading="lazy">
+          <span class="playbtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
           <span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click to watch fullscreen</span>
         </div>
         <div class="work-body">
@@ -501,11 +506,10 @@ footer .fmeta{font-size:13px;color:var(--dim)}
       </article>
 
       <article class="work rv">
-        <div class="work-vid vidbox" data-vid="WlakTCkrb14" role="button" tabindex="0" aria-label="Watch tower defense fullscreen">
+        <div class="work-vid vidbox" data-vid="WlakTCkrb14" role="button" tabindex="0" aria-label="Watch tower defense">
           <span class="work-tag">// tower defense</span>
-          <div class="preview-holder" id="prev-tower" data-vid="WlakTCkrb14"></div>
-          <span class="prev-mask"></span>
-          <span class="vcap"></span>
+          <img class="thumb" src="https://i.ytimg.com/vi/WlakTCkrb14/maxresdefault.jpg" alt="Tower defense gameplay" loading="lazy">
+          <span class="playbtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
           <span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click to watch fullscreen</span>
         </div>
         <div class="work-body">
@@ -730,43 +734,15 @@ footer .fmeta{font-size:13px;color:var(--dim)}
   var pbFill = document.getElementById('pbFill');
   var pbKnob = document.getElementById('pbKnob');
   var player = null, tick = null, lastFocused = null, usedFallback = false, currentId = null;
-  var previewPlayers = [];
 
   function apiIsReady(){ return typeof YT !== 'undefined' && YT && typeof YT.Player === 'function'; }
 
-  // create muted looping preview players inside each .preview-holder using the API
-  function initPreviews(){
-    document.querySelectorAll('.preview-holder').forEach(function(holder){
-      var id = holder.dataset.vid;
-      var p = new YT.Player(holder.id, {
-        width: '100%', height: '100%', videoId: id,
-        playerVars: { autoplay:1, mute:1, controls:0, rel:0, modestbranding:1, playsinline:1, disablekb:1, iv_load_policy:3, fs:0, loop:1, playlist:id },
-        events: {
-          onReady: function(e){ e.target.mute(); e.target.playVideo(); },
-          onStateChange: function(e){ if(e.data === YT.PlayerState.ENDED){ e.target.seekTo(0); e.target.playVideo(); } }
-        }
-      });
-      previewPlayers.push(p);
+  // thumbnails: fall back to hqdefault if a video has no maxres image
+  document.querySelectorAll('.thumb').forEach(function(img){
+    img.addEventListener('error', function(){
+      if(img.src.indexOf('maxresdefault') !== -1){ img.src = img.src.replace('maxresdefault','hqdefault'); }
     });
-  }
-
-  // poll for the API then build previews, fall back to a thumbnail image if blocked
-  var prevWaited = 0;
-  (function waitPreviews(){
-    if(apiIsReady()){ initPreviews(); return; }
-    prevWaited += 150;
-    if(prevWaited >= 6000){
-      document.querySelectorAll('.preview-holder').forEach(function(holder){
-        var img = document.createElement('img');
-        img.src = 'https://i.ytimg.com/vi/' + holder.dataset.vid + '/hqdefault.jpg';
-        img.alt = 'gameplay preview';
-        img.style.cssText = 'width:100%;height:100%;object-fit:cover';
-        holder.appendChild(img);
-      });
-      return;
-    }
-    setTimeout(waitPreviews, 150);
-  })();
+  });
 
   function fmt(t){ t=Math.max(0,Math.floor(t||0)); var m=Math.floor(t/60), s=t%60; return m+':'+(s<10?'0':'')+s; }
 
