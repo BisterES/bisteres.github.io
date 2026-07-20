@@ -224,11 +224,13 @@ img,video{display:block;max-width:100%}
 
 /* custom player stage: the youtube iframe sits here with its own UI hidden */
 .player-stage{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}
-/* modest scale crops the corner watermark and edges of youtube ui */
-.player-stage #ytplayer,.player-stage iframe{position:absolute;top:50%;left:50%;width:110%;height:110%;transform:translate(-50%,-50%);border:0}
-/* top mask hides youtube's title/channel bar which it forces on load and pause */
-.player-topmask{position:absolute;top:0;left:0;right:0;height:70px;z-index:2;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(14,11,9,.92),rgba(14,11,9,.55) 55%,transparent);opacity:0;transition:opacity .2s}
+/* modest scale crops the corner watermark and outer edges of youtube ui */
+.player-stage #ytplayer,.player-stage iframe{position:absolute;top:50%;left:50%;width:108%;height:108%;transform:translate(-50%,-50%);border:0}
+/* top mask fully hides youtube's title/channel bar and the top corner buttons,
+   which youtube forces on load, pause and end */
+.player-topmask{position:absolute;top:0;left:0;right:0;height:92px;z-index:2;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(14,11,9,.98) 40%,rgba(14,11,9,.7) 70%,transparent);
+  opacity:0;transition:opacity .2s}
 .player-stage.masked .player-topmask{opacity:1}
 /* transparent cover blocks clicks on youtube's own UI so only OUR controls work,
    also hides the youtube chrome that flashes on load */
@@ -789,6 +791,7 @@ footer .fmeta{font-size:13px;color:var(--dim)}
   function createPlayer(id){
     player = new YT.Player('ytplayer', {
       width: '100%', height: '100%', videoId: id,
+      host: 'https://www.youtube-nocookie.com',
       playerVars: { autoplay:1, controls:0, rel:0, modestbranding:1, playsinline:1, disablekb:1, iv_load_policy:3, fs:0 },
       events: { onReady: onReady, onStateChange: onState }
     });
@@ -813,6 +816,7 @@ footer .fmeta{font-size:13px;color:var(--dim)}
   function startPlayback(id){
     currentId = id;
     spinner.classList.remove('hide');
+    document.getElementById('playerStage').classList.add('masked');
     pbFill.style.width='0%'; pbKnob.style.left='0%';
     pbCur.textContent='0:00'; pbDur.textContent='0:00';
     // poll up to ~6s for the API, then fall back
