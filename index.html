@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23171310'/><text x='16' y='23' font-family='monospace' font-size='20' font-weight='bold' fill='%23FF5436' text-anchor='middle'>B</text></svg>">
 <title>BisterES, Roblox scripter for hire</title>
 <meta name="description" content="Roblox scripter. Sword combat weapons enemy AI and tower defense built clean and steady. Tight client server code and no lag. Fair prices while I build my name.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -223,7 +224,12 @@ img,video{display:block;max-width:100%}
 
 /* custom player stage: the youtube iframe sits here with its own UI hidden */
 .player-stage{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}
-.player-stage #ytplayer,.player-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* modest scale crops the corner watermark and edges of youtube ui */
+.player-stage #ytplayer,.player-stage iframe{position:absolute;top:50%;left:50%;width:110%;height:110%;transform:translate(-50%,-50%);border:0}
+/* top mask hides youtube's title/channel bar which it forces on load and pause */
+.player-topmask{position:absolute;top:0;left:0;right:0;height:70px;z-index:2;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(14,11,9,.92),rgba(14,11,9,.55) 55%,transparent);opacity:0;transition:opacity .2s}
+.player-stage.masked .player-topmask{opacity:1}
 /* transparent cover blocks clicks on youtube's own UI so only OUR controls work,
    also hides the youtube chrome that flashes on load */
 .player-cover{position:absolute;inset:0;z-index:2;cursor:pointer;background:transparent}
@@ -657,6 +663,7 @@ footer .fmeta{font-size:13px;color:var(--dim)}
     <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     <div class="player-stage" id="playerStage">
       <div id="ytplayer"></div>
+      <div class="player-topmask"></div>
       <div class="player-cover" id="playerCover"></div>
       <div class="player-spinner" id="playerSpinner"><span></span></div>
     </div>
@@ -753,13 +760,17 @@ footer .fmeta{font-size:13px;color:var(--dim)}
     if(d) pbDur.textContent = fmt(d);
   }
   function onState(e){
+    var stage = document.getElementById('playerStage');
     if(e.data === YT.PlayerState.PLAYING){
       pbPlay.classList.add('playing'); spinner.classList.add('hide'); startTick();
+      stage.classList.remove('masked');
       var d = player.getDuration() || 0; if(d) pbDur.textContent = fmt(d);
     } else if(e.data === YT.PlayerState.PAUSED){
       pbPlay.classList.remove('playing');
+      stage.classList.add('masked');
     } else if(e.data === YT.PlayerState.ENDED){
       pbPlay.classList.remove('playing');
+      stage.classList.add('masked');
     }
   }
 
