@@ -133,7 +133,7 @@ img,video{display:block;max-width:100%}
   box-shadow:0 40px 90px rgba(0,0,0,.5);
 }
 .reel-frame{position:relative;aspect-ratio:16/9;background:#0E0B09;overflow:hidden}
-.reel-frame video,.reel-frame iframe{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);border:0;object-fit:cover}
+.reel-frame video,.reel-frame iframe{position:absolute;top:50%;left:50%;width:114%;height:114%;transform:translate(-50%,-50%);border:0;object-fit:cover;pointer-events:none}
 .reel-frame::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;box-shadow:inset 0 0 90px 10px rgba(23,19,16,.5)}
 .reel-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px}
 .reel-ph .disc{
@@ -174,7 +174,7 @@ img,video{display:block;max-width:100%}
 }
 .work:hover{border-color:var(--line2);transform:translateY(-4px)}
 .work-vid{position:relative;aspect-ratio:16/9;background:#0E0B09;overflow:hidden}
-.work-vid video,.work-vid iframe{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);border:0;object-fit:cover}
+.work-vid video,.work-vid iframe{position:absolute;top:50%;left:50%;width:118%;height:118%;transform:translate(-50%,-50%);border:0;object-fit:cover;pointer-events:none}
 /* warm vignette so the youtube box melts into the card theme */
 .work-vid::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;box-shadow:inset 0 0 60px 6px rgba(23,19,16,.55)}
 .work-vid .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:11px;color:var(--dim);font-family:var(--mono);font-size:12.5px;z-index:1}
@@ -212,15 +212,16 @@ img,video{display:block;max-width:100%}
 .lightbox.open .lightbox-inner{transform:scale(1)}
 .lightbox-inner iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .lightbox-close{
-  position:absolute;top:-14px;right:-14px;z-index:2;width:44px;height:44px;border-radius:50%;
-  background:var(--red);color:#fff;border:0;cursor:pointer;font-size:22px;line-height:1;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 24px rgba(255,84,54,.4);transition:transform .2s;
+  position:absolute;top:-46px;right:0;z-index:2;width:34px;height:34px;border-radius:50%;
+  background:rgba(243,236,226,.08);color:var(--bone);border:1px solid rgba(243,236,226,.18);
+  cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(6px);transition:background .2s,border-color .2s,transform .2s;
 }
-.lightbox-close:hover{transform:scale(1.08)}
+.lightbox-close svg{width:15px;height:15px}
+.lightbox-close:hover{background:rgba(255,84,54,.9);border-color:transparent;transform:rotate(90deg)}
 @media(max-width:560px){
   .lightbox{padding:16px}
-  .lightbox-close{top:-12px;right:-6px;width:38px;height:38px;font-size:19px}
+  .lightbox-close{top:-40px;right:0;width:32px;height:32px}
   .vidbox .expand{font-size:10.5px;padding:5px 10px}
 }
 .work-tag{
@@ -397,7 +398,7 @@ footer .fmeta{font-size:13px;color:var(--dim)}
     <!-- the proof, biggest video up top -->
     <div class="reel rv">
       <div class="reel-frame vidbox" data-vid="FqebGZjJmP0" role="button" tabindex="0" aria-label="Open sword combat video">
-        <iframe src="https://www.youtube-nocookie.com/embed/FqebGZjJmP0?autoplay=1&mute=1&loop=1&playlist=FqebGZjJmP0&controls=0&rel=0&modestbranding=1&playsinline=1" title="Sword combat" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" tabindex="-1"></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/FqebGZjJmP0?autoplay=1&mute=1&loop=1&playlist=FqebGZjJmP0&controls=0&rel=0&modestbranding=1&playsinline=1" title="Sword combat" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" tabindex="-1"></iframe>
         <span class="vcap"></span>
         <span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click to watch full</span>
       </div>
@@ -447,7 +448,7 @@ footer .fmeta{font-size:13px;color:var(--dim)}
       <article class="work rv">
         <div class="work-vid vidbox" data-vid="FqebGZjJmP0" role="button" tabindex="0" aria-label="Open sword combat video">
           <span class="work-tag">// sword combat</span>
-          <iframe src="https://www.youtube-nocookie.com/embed/FqebGZjJmP0?autoplay=1&mute=1&loop=1&playlist=FqebGZjJmP0&controls=0&rel=0&modestbranding=1&playsinline=1" title="Sword combat" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" tabindex="-1"></iframe>
+          <iframe src="https://www.youtube-nocookie.com/embed/FqebGZjJmP0?autoplay=1&mute=1&loop=1&playlist=FqebGZjJmP0&controls=0&rel=0&modestbranding=1&playsinline=1" title="Sword combat" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" tabindex="-1"></iframe>
           <span class="vcap"></span>
           <span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click to watch full</span>
         </div>
@@ -461,7 +462,7 @@ footer .fmeta{font-size:13px;color:var(--dim)}
       <article class="work rv">
         <div class="work-vid vidbox" data-vid="WlakTCkrb14" role="button" tabindex="0" aria-label="Open tower defense video">
           <span class="work-tag">// tower defense</span>
-          <iframe src="https://www.youtube-nocookie.com/embed/WlakTCkrb14?autoplay=1&mute=1&loop=1&playlist=WlakTCkrb14&controls=0&rel=0&modestbranding=1&playsinline=1" title="Tower defense" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" tabindex="-1"></iframe>
+          <iframe src="https://www.youtube-nocookie.com/embed/WlakTCkrb14?autoplay=1&mute=1&loop=1&playlist=WlakTCkrb14&controls=0&rel=0&modestbranding=1&playsinline=1" title="Tower defense" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" tabindex="-1"></iframe>
           <span class="vcap"></span>
           <span class="expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click to watch full</span>
         </div>
@@ -607,7 +608,7 @@ footer .fmeta{font-size:13px;color:var(--dim)}
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Video player">
   <div class="lightbox-inner">
-    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close video">&times;</button>
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     <div id="lightboxSlot"></div>
   </div>
 </div>
@@ -670,7 +671,7 @@ footer .fmeta{font-size:13px;color:var(--dim)}
     slot.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
       '?autoplay=1&controls=1&rel=0&playsinline=1" title="Video" ' +
       'referrerpolicy="strict-origin-when-cross-origin" ' +
-      'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+      'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>';
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
     lbClose.focus();
