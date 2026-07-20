@@ -180,7 +180,7 @@ img,video{display:block;max-width:100%}
 .vidbox{cursor:pointer}
 .vidbox:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 /* API-managed looping preview, scaled to crop youtube chrome, non interactive */
-.preview-holder{position:absolute;top:50%;left:50%;width:150%;height:150%;transform:translate(-50%,-50%);z-index:0;pointer-events:none}
+.preview-holder{position:absolute;top:50%;left:50%;width:135%;height:135%;transform:translate(-50%,-50%);z-index:0;pointer-events:none}
 .preview-holder iframe{width:100%;height:100%;border:0}
 /* mask sits over the scaled video to hide any youtube title/avatar that peeks in */
 .prev-mask{position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -740,7 +740,6 @@ footer .fmeta{font-size:13px;color:var(--dim)}
       var id = holder.dataset.vid;
       var p = new YT.Player(holder.id, {
         width: '100%', height: '100%', videoId: id,
-        host: 'https://www.youtube-nocookie.com',
         playerVars: { autoplay:1, mute:1, controls:0, rel:0, modestbranding:1, playsinline:1, disablekb:1, iv_load_policy:3, fs:0, loop:1, playlist:id },
         events: {
           onReady: function(e){ e.target.mute(); e.target.playVideo(); },
@@ -803,7 +802,6 @@ footer .fmeta{font-size:13px;color:var(--dim)}
   function createPlayer(id){
     player = new YT.Player('ytplayer', {
       width: '100%', height: '100%', videoId: id,
-      host: 'https://www.youtube-nocookie.com',
       playerVars: { autoplay:1, controls:0, rel:0, modestbranding:1, playsinline:1, disablekb:1, iv_load_policy:3, fs:0 },
       events: { onReady: onReady, onStateChange: onState }
     });
